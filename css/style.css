@@ -47,6 +47,12 @@ body{
   color: #c1c1c1;
 }
 
+.tarefas-input input:focus{
+  background-color: #060606;
+}
+
+
+
 .tarefas-input img{
   width: 30px;
   cursor: pointer;
