@@ -3,34 +3,40 @@ const add = document.querySelector("#add");
 const lista = document.querySelector(".tarefas-lista ul");
 const itens = document.querySelectorAll(".tarefas-lista ul");
 
+function criaElemento(tag,classe,conteudo){
+  let elemento = document.createElement(tag);
+  classe ? elemento.classList.add(classe) : null ; 
+  conteudo ? elemento.innerHTML = conteudo : null;
+  return elemento;
+}
+
+function criaIcones(tag,classe,atributo,caminho){
+  const icone = document.createElement(tag);
+  icone.classList.add(classe)
+  caminho ? icone.setAttribute(atributo,caminho) : null;
+  console.log(icone)
+  return icone;
+}
+
 //add um item na lista
 function addItem() {
   if (input.value !== "") {
-    const novoItem = document.createElement("li");
+    const novoItem = criaElemento("li","item",input.value);
     const icones = document.createElement("div");
-    const check = document.createElement("img");
-    const del = document.createElement("img");
+    const check = criaIcones("img","icone","src","./img/check.svg");
+    const del = criaIcones("img","icone","src","./img/xis.svg");
 
     //cria um novo item na lista
     lista.appendChild(novoItem);
-  
-    novoItem.innerHTML = input.value;
-    novoItem.classList.add("item");
-    input.value = "";
 
+    input.value = "";
     //cria o conteiner de icones
     novoItem.appendChild(icones);
     icones.classList.add("icones");
-
     //add o icon check
-    check.setAttribute("src", "./img/check.svg");
     icones.appendChild(check);
-    check.classList.add("icone");
-
     // add o icon del
-    del.setAttribute("src", "./img/xis.svg");
     icones.appendChild(del);
-    del.classList.add("icone");
 
     del.addEventListener("click", function () {
       novoItem.remove();
